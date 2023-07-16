@@ -8,8 +8,10 @@ frame.set(4,480)
 
 while True:
     success , img = frame.read()
-    imgGray = cv.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    imgBlur = cv.GaussianBlur(imgGray,(5,5),3)
+    gray = cv.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    blur = cv.GaussianBlur(gray,(5,5),3)
+    canny = cv.Canny(blur,50,50)
+    copy = img.copy()
     cv.imshow('webcam',img)
     if cv.waitKey(1) & 0xff == ord('q'):
         break
