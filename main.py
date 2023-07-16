@@ -10,7 +10,7 @@ def get_contours(img,original_img):
     contours,hierarchy = cv.findContours(img,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
     for cnt in contours:
         area = cv.contourArea(cnt)
-        if area > 50000:
+        if area > 30000:
             cv.drawContours(original_img ,cnt,-1,(0,255,0),2)
 
 
