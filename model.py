@@ -22,6 +22,12 @@ for x in range(0,class_numbers):
         training_data.append([current_image,class_numbers])
     print(x)
 
-training_data = np.array(training_data)
+training_data = np.array(training_data, dtype=object)
 
 print(len(training_data))
+
+random.seed(10160)
+random.shuffle(training_data)
+for features, labels in training_data[:10]:
+    print(labels)
+
