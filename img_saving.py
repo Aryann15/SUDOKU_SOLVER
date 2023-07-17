@@ -40,27 +40,3 @@ def get_contours(img,original_img):
                     else:
                          contours[x][y]= 255
             cv.imshow('contour',contours)
-            # cell = contours[0:100,0:100]
-            # plt.imshow(cell , cmap= 'gray')
-            # plt.show()
-
-            crop = 20
-
-            for y in range(1,9):
-                for x in range (1,9):
-                    plt.imshow(contours[y*100-100+crop:y*100-crop,x*100-100+crop:x*100-crop], cmap ='gray')
-                    plt.show()
-while True:
-    success , img = frame.read()
-    gray = cv.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    blur = cv.GaussianBlur(gray,(5,5),3)
-    canny = cv.Canny(blur,50,50)
-    copy = img.copy()
-
-    get_contours(canny,copy)
-
-    cv.imshow('webcam',copy)
-    if cv.waitKey(1) & 0xff == ord('q'):
-        break
-
-
