@@ -1,7 +1,7 @@
 import cv2
 import cv2 as cv
 import numpy as np
-
+import  matplotlib.pyplot as plt
 frame = cv.VideoCapture(0)
 
 frame.set(3,640)
@@ -40,6 +40,9 @@ def get_contours(img,original_img):
                     else:
                         contours[x][y]= 255
             cv.imshow('contour',contours)
+            cell = contours[0:100,0:100]
+            plt.imshow(cell , cmap= 'gray')
+            plt.show()
 
 while True:
     success , img = frame.read()
