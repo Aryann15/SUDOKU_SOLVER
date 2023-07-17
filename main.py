@@ -32,8 +32,14 @@ def get_contours(img,original_img):
             matrix = cv.getPerspectiveTransform(pts1,pts2)
             img_perspective= cv.warpPerspective(original_img,matrix,(width,height))
             contours= cv.cvtColor(img_perspective,cv.COLOR_BGR2GRAY)
-            cv.imshow('contour', contours)
-
+            # cv.imshow('contour', contours)
+            for x in range(0,900):
+                for y in range (0,900):
+                    if contours[x][y]<100:
+                        contours[x][y] = 0
+                    else:
+                        contours[x][y]= 255
+            cv.imshow('contour',contours)
 
 while True:
     success , img = frame.read()
