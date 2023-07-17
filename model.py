@@ -31,3 +31,15 @@ random.shuffle(training_data)
 for features, labels in training_data[:10]:
     print(labels)
 
+X=[]
+Y=[]
+
+for features,labels in training_data:
+    X.append(features)
+    Y.append(labels)
+
+X=np.array(X).reshape(-1,100,100,1)
+X=X.astype('float32')
+X=X/255
+
+Y=np.array(Y)
