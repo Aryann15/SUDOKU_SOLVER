@@ -29,6 +29,11 @@ def get_contours(img,original_img):
             pts1 = np.float32([[bx, by], [ax, ay], [cx, cy], [dx, dy]])
             pts2 = np.float32([[0,0], [width,0], [0,height], [width,height]])
 
+            matrix = cv.getPerspectiveTransform(pts1,pts2)
+            img_perspective= cv.warpPerspective(original_img,matrix,(width,height))
+            contours= cv.cvtColor(img_perspective,cv.COLOR_BGR2GRAY)
+            cv.imshow('contour', contours)
+
 
 while True:
     success , img = frame.read()
