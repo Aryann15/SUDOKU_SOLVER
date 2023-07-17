@@ -40,10 +40,14 @@ def get_contours(img,original_img):
                     else:
                         contours[x][y]= 255
             cv.imshow('contour',contours)
-            cell = contours[0:100,0:100]
-            plt.imshow(cell , cmap= 'gray')
-            plt.show()
+            # cell = contours[0:100,0:100]
+            # plt.imshow(cell , cmap= 'gray')
+            # plt.show()
 
+            for y in range(1,9):
+                for x in range (1,9):
+                    plt.imshow(contours[y*100-100:y*100,x*100-100:x*100], cmap ='gray')
+                    plt.show()
 while True:
     success , img = frame.read()
     gray = cv.cvtColor(img, cv2.COLOR_BGR2GRAY)
