@@ -7,6 +7,8 @@ frame = cv.VideoCapture(0)
 frame.set(3,640)
 frame.set(4,480)
 
+
+
 def get_contours(img,original_img):
     contours,hierarchy = cv.findContours(img,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
     for cnt in contours:
@@ -40,3 +42,19 @@ def get_contours(img,original_img):
                     else:
                          contours[x][y]= 255
             cv.imshow('contour',contours)
+
+
+def pick_images(grid, img):
+    data_drop = 'data'
+    crop = 20
+    listnum= []
+    for i in range(0,9):
+        for j in range (0,9):
+            if grid[i][j] not in listnum:
+                print(grid[i][j])
+                listnum.append(grid[i][j])
+                J = j+1
+                I = i+1
+                cell = img[I*100-100 +crop : I*100 -crop, J*100-100 +crop: J*100 -crop]
+
+                cv.imwrite(data_drop+ str(grid[i][j]) + '//IMG_{}.png'.format((i+1)*(j+1),cell)
