@@ -44,9 +44,11 @@ def get_contours(img,original_img):
             # plt.imshow(cell , cmap= 'gray')
             # plt.show()
 
+            crop = 20
+
             for y in range(1,9):
                 for x in range (1,9):
-                    plt.imshow(contours[y*100-100:y*100,x*100-100:x*100], cmap ='gray')
+                    plt.imshow(contours[y*100-100+crop:y*100-crop,x*100-100+crop:x*100-crop], cmap ='gray')
                     plt.show()
 while True:
     success , img = frame.read()
