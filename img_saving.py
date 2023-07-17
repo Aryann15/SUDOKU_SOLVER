@@ -58,3 +58,17 @@ def pick_images(grid, img):
                 cell = img[I*100-100 +crop : I*100 -crop, J*100-100 +crop: J*100 -crop]
 
                 cv.imwrite(data_drop+ str(grid[i][j]) + '//IMG_{}.png'.format((i+1)*(j+1),cell)
+
+
+while True:
+    success, img = frame.read()
+    gray = cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+    blur = cv.GaussianBlur(gray, (5, 5), 3)
+    canny = cv.Canny(blur, 50, 50)
+    copy = img.copy()
+
+    get_contours(canny, copy)
+
+    # cv.imshow('webcam', copy)
+    # if cv.waitKey(1) & 0xff == ord('q'):
+    #     break
