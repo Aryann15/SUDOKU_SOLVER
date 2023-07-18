@@ -24,8 +24,9 @@ for x in range(0,class_numbers):
     pic_list = os.listdir(path + '/' + str(x))
     for y in pic_list:
         current_image = cv.imread(path+'/'+str(x)+ '/' +y)
-        current_image = cv.resize(current_image,(32,32))
-        training_data.append([current_image,class_numbers])
+        current_image = cv.resize(current_image,(100,100))
+        gray = cv.cvtColor(current_image,cv.COLOR_BGR2GRAY)
+        training_data.append([gray,x])
     print(x)
 
 training_data = np.array(training_data, dtype=object)
@@ -39,14 +40,15 @@ for features, labels in training_data[:10]:
 
 X=[]
 Y=[]
-
+img_size =60
 for features,labels in training_data:
     X.append(features)
     Y.append(labels)
 
-X=np.array(X).reshape(-1,100,100,1)
+X=np.array(X)
 X=X.astype('float32')
 X=X/255
+print(len(X))
 
 Y=np.array(Y)
 
@@ -62,3 +64,4 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 model.fit(X,Y,epochs=5)
+model.save('sudoku_model')
