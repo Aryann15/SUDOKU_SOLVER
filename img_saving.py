@@ -85,6 +85,11 @@ def classify(grid, img):
 
                         image_num = img_to_array(image_rect)
 
+                        image_num = np.array(image_num).reshape(-1,100,100,1)
+                        image_num = image_num.astype('float32')
+                        image_num = image_num / 255
+
+
 
 
 while True:
