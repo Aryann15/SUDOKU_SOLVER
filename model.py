@@ -40,7 +40,7 @@ for features, labels in training_data[:10]:
 
 X=[]
 Y=[]
-img_size =60
+
 for features,labels in training_data:
     X.append(features)
     Y.append(labels)
