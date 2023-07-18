@@ -42,9 +42,9 @@ def get_contours(img,original_img):
                     else:
                          contours[x][y]= 255
             cv.imshow('contour',contours)
+            classify()
 
-
-def pick_images(grid, img):
+def classify(grid, img):
     data_drop = 'data'
     crop = 20
     listnum= []
@@ -57,7 +57,19 @@ def pick_images(grid, img):
                 I = i+1
                 cell = img[I*100-100 +crop : I*100 -crop, J*100-100 +crop: J*100 -crop]
 
-                cv.imwrite(data_drop+ str(grid[i][j]) + '//IMG_{}.png'.format((i+1)*(j+1),cell)
+                canny = cv.Canny(cell,50,50)
+                contours,hirarchy = cv. findContours(canny,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
+
+                for cnt in contours:
+                    area = cv.contourArea(cnt)
+
+                    if area > 5:
+                        peri = cv.arcLength(cnt,True)
+                        approx = cv.approxPolyDP(cnt,0.02*peri,True)
+
+                        x,y,w,h = cv.boundingRect(approx)
+                        image_rect = img
+
 
 
 while True:
@@ -69,6 +81,6 @@ while True:
 
     get_contours(canny, copy)
 
-    # cv.imshow('webcam', copy)
-    # if cv.waitKey(1) & 0xff == ord('q'):
-    #     break
+    cv.imshow('webcam', copy)
+    if cv.waitKey(1) & 0xff == ord('q'):
+        break
