@@ -4,8 +4,6 @@ import numpy as np
 import  matplotlib.pyplot as plt
 frame = cv.VideoCapture(0)
 
-frame.set(3,640)
-frame.set(4,480)
 
 def get_contours(img,original_img):
     contours,hierarchy = cv.findContours(img,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
@@ -32,13 +30,13 @@ def get_contours(img,original_img):
             matrix = cv.getPerspectiveTransform(pts1,pts2)
             img_perspective= cv.warpPerspective(original_img,matrix,(width,height))
             contours= cv.cvtColor(img_perspective,cv.COLOR_BGR2GRAY)
-            # cv.imshow('contour', contours)
+            cv.imshow('contour', contours)
             for x in range(0,900):
                 for y in range (0,900):
                     if contours[x][y]<100:
                         contours[x][y] = 0
                     else:
-                         contours[x][y]= 255
+                        contours[x][y]= 255
             cv.imshow('contour',contours)
             # cell = contours[0:100,0:100]
             # plt.imshow(cell , cmap= 'gray')
