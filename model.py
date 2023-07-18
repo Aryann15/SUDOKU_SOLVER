@@ -3,7 +3,7 @@ import cv2 as cv
 import os
 import random
 import tensorflow as tf
-from sklearn.model_selection import KFold
+
 from statistics import *
 from keras.utils import to_categorical
 from keras.models import Sequential
@@ -12,6 +12,7 @@ from keras.layers import Flatten
 from keras.optimizers import SGD
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from tf.keras.preprocessing.image import img_to_array
 
 path= 'data'
 training_data = []
