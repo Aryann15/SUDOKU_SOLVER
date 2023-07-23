@@ -14,8 +14,12 @@ def data_augmentation():
         for img_filename in (os.listdir(path)):
             try:
                 img_array = cv.imread(os.path.join(path,img_filename))
-                plt.imshow(img_array,cmap= 'gray')
-                plt.show()
+                # plt.imshow(img_array,cmap= 'gray')
+                # plt.show()
+                canny = cv.Canny(img_array,50,50)
+                contours, hierarchy = cv.findContours(canny,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
+
+
 
             except Exception as e:
                 raise(e)
