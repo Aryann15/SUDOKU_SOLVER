@@ -31,7 +31,7 @@ def get_contours(img,original_img):
     for cnt in contours:
         area = cv.contourArea(cnt)
         if area > 80000:
-            print(area)
+            # print(area)
             cv.drawContours(original_img, cnt, -1, (0, 255, 0), 2)
             peri = cv.arcLength(cnt, True)
             approx = cv.approxPolyDP(cnt, 0.02 * peri, True)
@@ -151,31 +151,20 @@ def find_empty(grid):
                 return (i,j)  # row, col
 
     return None
-
-def save(sudoku2d,sudoku2d_unsolved):
-    solved_cell = np.ones((900,900,3))
-
-    for i in range(8):
-        solved_cell = cv.line(solved_cell,((i+1)*100,0),((i+1)*100,900),(255,255,255),5)
-        solved_cell = cv.line(solved_cell,(0,(i+1)*100),(900,(i+1)*100),(255,255,255),5)
-
-    for i in range(2):
-        solved_cell = cv.line(solved_cell,((i+1)*300,0),((i+1)*300,900),(255,255,255),10)
-        solved_cell = cv.line(solved_cell,(0,(i+1)*300),(900,(i+1)*300),(255,255,255),10)
-    font = cv.FONT_HERSHEY_SIMPLEX
-    fontScale = 2
-    thickness = 4
-    for (index_row, row) in enumerate(sudoku2d):
-        for (index_num, num) in enumerate(row):
-            pos = (index_num * 100 + 25, index_row * 100 + 70)
-            color = (200, 200, 200)
-            if sudoku2d_unsolved[index_row][index_num] == 0:
-                color(0, 200, 0)
-
-            solved_cell = cv.putText(solved_cell, str(num), pos, font, fontScale, color, thickness, cv.LINE_AA)
-
-    cv.imwrite('solved_sodoku :)',solved_cell)
-    cv.imshow('solved sodoku',solved_cell)
+def array_to_string(sudoku):
+    rows, cols = sudoku.shape
+    string_repr = "["
+    for i in range(rows):
+        string_repr += "["
+        for j in range(cols):
+            string_repr += str(sudoku[i][j])
+            if j < cols - 1:
+                string_repr += ", "
+        string_repr += "]"
+        if i < rows - 1:
+            string_repr += ",\n "
+    string_repr += "]"
+    return string_repr
 
 
 while True:
@@ -203,10 +192,11 @@ while True:
         sudoku2d = np.array(sudoku2d)
 
         sudoku2d_unsolved = sudoku2d.copy()
-        print(sudoku2d_unsolved)
+        print(array_to_string(sudoku2d_unsolved))
 
         solve(sudoku2d)
-        save_
+        # save(sudoku2d,sudoku2d_unsolved)
+
     except:
         pass
 
