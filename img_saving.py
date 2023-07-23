@@ -4,7 +4,7 @@ import tensorflow as tf
 import requests
 import imutils
 
-url = "http://192.168.1.6:8080/shot.jpg"
+url = "http://192.168.1.2:8080/shot.jpg"
 
 from statistics import *
 from keras.utils import to_categorical
