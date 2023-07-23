@@ -13,7 +13,7 @@ def get_contours(img, original_img):
     for cnt in contours:
         area = cv.contourArea(cnt)
         if area > 80000:
-            print(area)
+            # print(area)
             cv.drawContours(original_img, cnt, -1, (0, 255, 0), 2)
             peri = cv.arcLength(cnt, True)
             approx = cv.approxPolyDP(cnt, 0.02 * peri, True)
@@ -42,17 +42,33 @@ def get_contours(img, original_img):
                     else:
                         contours[x][y] = 255
             cv.imshow('contour', contours)
+            image_differentiator(arr,contours)
             # cell = contours[0:70,0:70]
             # plt.imshow(cell , cmap= 'gray')
             # plt.show()
 
-            crop = 10
+            # crop = 10
+            #
+            # for y in range(1, 9):
+            #     for x in range(1, 9):
+            #         plt.imshow(contours[y * 70 - 70 + crop:y * 70 - crop, x * 70 - 70 + crop:x * 70 - crop],
+            #                    cmap='gray')
+            #         plt.show()
 
-            for y in range(1, 9):
-                for x in range(1, 9):
-                    plt.imshow(contours[y * 70 - 70 + crop:y * 70 - crop, x * 70 - 70 + crop:x * 70 - crop],
-                               cmap='gray')
-                    plt.show()
+def image_differentiator(grid,Img):
+    drop_loc = 'C://Users//rajly//sudokuSOLVER//data//'
+    crop_val= 10
+
+    listNum = []
+    for i in range (0,9):
+        for j in range (0,9):
+            if grid[i][j] not in listNum:
+                print(grid[i][j])
+                listNum.append(grid[i][j])
+                J = j + 1
+                I = i + 1
+                cell = Img[I * 70 - 70 + crop_val: I * 70 - crop_val, j * 70 - 70 + crop_val: j * 70 - crop_val]
+                cv.imwrite(drop_loc + str(grid[i][j]) + '//IMG_{}.png'.format((i + 1) * (j + 1)), cell)
 
 
 while True:
