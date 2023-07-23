@@ -162,23 +162,17 @@ def save(sudoku2d,sudoku2d_unsolved):
     for i in range(2):
         solved_cell = cv.line(solved_cell,((i+1)*300,0),((i+1)*300,900),(255,255,255),10)
         solved_cell = cv.line(solved_cell,(0,(i+1)*300),(900,(i+1)*300),(255,255,255),10)
+    font = cv.FONT_HERSHEY_SIMPLEX
+    fontScale = 2
+    thickness = 4
+    for (index_row, row) in enumerate(sudoku2d):
+        for (index_num, num) in enumerate(row):
+            pos = (index_num * 100 + 25, index_row * 100 + 70)
+            color = (200, 200, 200)
+            if sudoku2d_unsolved[index_row][index_num] == 0:
+                color(0, 200, 0)
 
-font = cv.FONT_HERSHEY_SIMPLEX
-fontScale= 2
-thickness=4
-for (index_row,row) in enumerate(sudoku2d):
-    for (index_num,num) in enumerate(row):
-        pos =(index_num*100 +25, index_row*100 +70)
-        color = (200,200,200)
-        if sudoku2d_unsolved[index_row][index_num]==0:
-            color(0,200,0)
-
-        solved_cell = cv.putText(solved_cell,str(num),pos,font,fontScale,color,thickness,cv.LINE_AA)
-
-
-
-
-
+            solved_cell = cv.putText(solved_cell, str(num), pos, font, fontScale, color, thickness, cv.LINE_AA)
 
 
 
