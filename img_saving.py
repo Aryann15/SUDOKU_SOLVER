@@ -159,6 +159,13 @@ def save(sudoku2d,sudoku2d_unsolved):
         solved_cell = cv.line(solved_cell,((i+1)*100,0),((i+1)*100,900),(255,255,255),5)
         solved_cell = cv.line(solved_cell,(0,(i+1)*100),(900,(i+1)*100),(255,255,255),5)
 
+    for i in range(2):
+        solved_cell = cv.line(solved_cell,((i+1)*300,0),((i+1)*300,900),(255,255,255),10)
+        solved_cell = cv.line(solved_cell,(0,(i+1)*300),(900,(i+1)*300),(255,255,255),10)
+
+
+
+
 while True:
     img_resp = requests.get(url)
     img_arr = np.array(bytearray(img_resp.content), dtype=np.uint8)
