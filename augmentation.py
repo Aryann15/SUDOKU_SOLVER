@@ -27,10 +27,10 @@ def data_augmentation():
                         img_rect = cv.resize(img_rect,(100,100))
                         # plt.imshow(img_array,cmap= 'gray')
                         # plt.show()
-
-
-
-
+                        for blur_value in range(-30,30):
+                            img= cv.GaussianBlur(img_rect,(7,7),blur_value)
+                            plt.imshow(img_array,cmap= 'gray')
+                            plt.show()
 
             except Exception as e:
                 raise(e)
