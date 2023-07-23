@@ -53,6 +53,7 @@ def get_contours(img,original_img):
                 for x in range (1,9):
                     plt.imshow(contours[y*70-70+crop:y*70-crop,x*70-70+crop:x*70-crop], cmap ='gray')
                     plt.show()
+
 while True:
     img_resp = requests.get(url)
     img_arr = np.array(bytearray(img_resp.content), dtype=np.uint8)
