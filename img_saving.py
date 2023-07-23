@@ -174,6 +174,8 @@ def save(sudoku2d,sudoku2d_unsolved):
 
             solved_cell = cv.putText(solved_cell, str(num), pos, font, fontScale, color, thickness, cv.LINE_AA)
 
+    cv.imwrite('solved_sodoku :)',solved_cell)
+    cv.imshow('solved sodoku',solved_cell)
 
 
 while True:
