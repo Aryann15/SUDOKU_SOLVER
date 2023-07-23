@@ -130,10 +130,21 @@ def valid(grid, row, col , number):
     corner_col = col - col % 3
     for x in range(3):
         for y in range(3):
-            if grid[corner_row+ x][corner_col + y] == number
+            if grid[corner_row+ x][corner_col + y] == number:
                 return False
 
     return True
+
+def solve(grid, row, col):
+    if col == 9:
+        if row==8:
+            return True
+        row +=1
+        col = 0
+
+    if grid[row][col] > 0:
+        return solve(grid,row,col+1)
+
 
 
 while True:
