@@ -163,8 +163,7 @@ while True:
 
     except:
         pass
-
-    # get_contours(canny, copy)
+    #get_contours(canny, copy)
 
     cv.imshow('webcam', copy)
     if cv.waitKey(1) & 0xff == ord('q'):
