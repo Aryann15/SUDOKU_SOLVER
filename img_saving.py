@@ -103,54 +103,6 @@ def classify(img):
 
     return digits_list
 
-def solve(grid):
-    find = find_empty(grid)
-    if not find:
-        return True
-    else:
-        row,col = find
-
-    for i in range(1,10):
-        if is_valid(grid, i , (row,col)):
-            grid[row][col]= i
-            if solve(grid):
-                return True
-
-            grid[row][col] = 0
-
-    return False
-
-
-def is_valid(grid,num, coordinate):
-    #Check row
-    for i in range (len(grid[0])):
-        if grid[coordinate[0]][i] == num and coordinate[1] != i:
-            return False
-
-    #Check column
-    for i in range(len(grid)):
-        if grid[i][coordinate[1]] == num and coordinate[0] != i:
-            return False
-
-
-    box_x = coordinate[1]
-    box_y = coordinate[0]
-
-
-    for i in range(box_y*3 , box_y*3 +3):
-        for j in range(box_x*3, box_x*3 +3):
-            if grid[i][j] == num and (i,j) != coordinate:
-                return False
-
-    return True
-
-def find_empty(grid):
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
-            if grid[i][j] == 0:
-                return (i,j)  # row, col
-
-    return None
 def array_to_string(sudoku):
     rows, cols = sudoku.shape
     string_repr = "["
@@ -194,8 +146,8 @@ while True:
         sudoku2d_unsolved = sudoku2d.copy()
         print(array_to_string(sudoku2d_unsolved))
 
-        solve(sudoku2d)
-        # save(sudoku2d,sudoku2d_unsolved)
+
+
 
     except:
         pass
