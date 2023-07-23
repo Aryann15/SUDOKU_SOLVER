@@ -144,6 +144,11 @@ def solve(grid, row, col):
 
     if grid[row][col] > 0:
         return solve(grid,row,col+1)
+    for num in range(1,10):
+        if valid(grid,row,col,num):
+            grid[row][col]= num
+            if solve(grid,row,col+1):
+                return True
 
 
 
