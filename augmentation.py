@@ -67,3 +67,16 @@ for features,label in training_data[:10]:
     print(label)
 
 
+IMG_SIZE = 100
+X = []
+Y = []
+
+for features,label in training_data:
+    X.append(features)
+    Y.append(label)
+
+X = np.array(X).reshape(-1,IMG_SIZE,IMG_SIZE,1)
+X = X.astype('float32')
+X = X /255.0
+
+Y = np.array(Y)
