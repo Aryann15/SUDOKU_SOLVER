@@ -60,7 +60,8 @@ def get_contours(img,original_img):
                     else:
                         contours[x][y] = 255
             cv.imshow('contour', contours)
-            classify(contours)
+            return contours
+            # classify(contours)
 #
 def classify(img):
     crop = 10
@@ -94,8 +95,8 @@ def classify(img):
                     prediction  = model.predict(image_num)
                     digit = np.argmax(prediction)
                     prob = np.max(prediction)
-                    plt.imshow(image_rect, cmap='gray')
-                    plt.show()
+                    # plt.imshow(image_rect, cmap='gray')
+                    # plt.show()
             print('detected:' , digit)
             print('probability' , prob)
             digits_list.append(digit)
@@ -143,6 +144,14 @@ def is_valid(grid,num, coordinate):
 
     return True
 
+def find_empty(grid):
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j] == 0:
+                return (i, j)  # row, col
+
+    return None
+
 
 
 while True:
@@ -156,7 +165,25 @@ while True:
     canny = cv.Canny(blur, 50, 50)
     copy = img.copy()
 
-    get_contours(canny, copy)
+
+    img_contours = img.copy()
+
+    img_contours_bin = get_contours(canny,copy)
+
+    try:
+        sudoku = classify(img_contours_bin)
+        # print(sudoku)
+        sudoku2d = []
+        for i in range (0,9):
+            sudoku2d.append([cell for cell in sudoku[i*9:(i+1)*9]])
+        solve(sudoku2d)
+        print(sudoku2d)
+    except:
+        pass
+
+
+
+    # get_contours(canny, copy)
 
     cv.imshow('webcam', copy)
     if cv.waitKey(1) & 0xff == ord('q'):
