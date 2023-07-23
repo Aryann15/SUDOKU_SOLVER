@@ -123,8 +123,18 @@ def solve(grid):
 def is_valid(grid,num, coordinate):
     #Check row
     for i in range (len(grid[0])):
-        if grid[coordinate[0]][i] == num and coordinate[1] ! = i:
+        if grid[coordinate[0]][i] == num and coordinate[1] != i:
             return False
+
+    #Check column
+    for i in range(len(grid)):
+        if grid[i][coordinate[1]] == num and coordinate[ 0 ] != i:
+            return False
+
+
+    box_x = coordinate[1]
+    box_y = coordinate[0]
+
 
 
 
