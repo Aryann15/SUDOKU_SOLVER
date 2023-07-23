@@ -129,7 +129,7 @@ def is_valid(grid,num, coordinate):
 
     #Check column
     for i in range(len(grid)):
-        if grid[i][coordinate[1]] == num and coordinate[ 0 ] != i:
+        if grid[i][coordinate[1]] == num and coordinate[0] != i:
             return False
 
 
@@ -139,7 +139,7 @@ def is_valid(grid,num, coordinate):
 
     for i in range(box_y*3 , box_y*3 +3):
         for j in range(box_x*3, box_x*3 +3):
-            if grid[i][j] ==num and (i,j) != coordinate:
+            if grid[i][j] == num and (i,j) != coordinate:
                 return False
 
     return True
@@ -148,7 +148,7 @@ def find_empty(grid):
     for i in range(len(grid)):
         for j in range(len(grid[0])):
             if grid[i][j] == 0:
-                return (i, j)  # row, col
+                return (i,j)  # row, col
 
     return None
 
@@ -176,12 +176,15 @@ while True:
         sudoku2d = []
         for i in range (0,9):
             sudoku2d.append([cell for cell in sudoku[i*9:(i+1)*9]])
+        sudoku2d = np.array(sudoku2d)
+
+        sudoku2d_unsolved = sudoku2d.copy()
+        print(sudoku2d_unsolved)
+
         solve(sudoku2d)
         print(sudoku2d)
     except:
         pass
-
-
 
     # get_contours(canny, copy)
 
