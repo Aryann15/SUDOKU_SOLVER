@@ -40,13 +40,16 @@ def data_augmentation():
                         #
                             img_erosion = cv.erode(img,kernel,iterations =1)
                             img_erosion2 = cv.erode(img,kernel,iterations =2)
+                            training_data.append([img_erosion, class_num])
+                            training_data.append([img_erosion2, class_num])
 
                             # plt.imshow(img_erosion2,cmap= 'gray')
                             # plt.show()
 
                             img_dilation = cv.dilate(img, kernel, iterations=1)
                             img_dilation2 = cv.dilate(img, kernel, iterations=2)
-
+                            training_data.append([img_dilation, class_num])
+                            training_data.append([img_dilation2, class_num])
 
                             # plt.imshow(img_dilation2,cmap= 'gray')
                             # plt.show()
