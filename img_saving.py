@@ -120,6 +120,11 @@ def solve(grid):
     return False
 
 
+def is_valid(grid,num, coordinate):
+    #Check row
+    for i in range (len(grid[0])):
+        if grid[coordinate[0]][i] == num and coordinate[1] ! = i:
+            return False
 
 
 
