@@ -19,17 +19,32 @@ def data_augmentation():
 
                 for cnt in contours:
                     area = cv.contourArea(cnt)
-                    if area > 5:
+                    if area > 2:
                         peri = cv.arcLength(cnt,True)
-                        approx= cv. approxPolyDP(cnt,0.02*peri,True)
+                        approx= cv. approxPolyDP(cnt,0.01*peri,True)
                         x,y,w,h = cv.boundingRect(approx)
                         img_rect = img_array[y:y+h,x:x+w]
                         img_rect = cv.resize(img_rect,(100,100))
-                        # plt.imshow(img_array,cmap= 'gray')
+                        # plt.imshow(img_rect,cmap= 'gray')
                         # plt.show()
+
+                        kernel = np.ones((3,3),np.uint8)
+                        #
+                        #
                         for blur_value in range(-30,30):
                             img= cv.GaussianBlur(img_rect,(7,7),blur_value)
-                            plt.imshow(img_array,cmap= 'gray')
+                        #     plt.imshow(img,cmap= 'gray')
+                        #     plt.show()
+                        #
+                            img_erosion = cv.erode(img,kernel,iterations =1)
+                            img_erosion2 = cv.erode(img,kernel,iterations =2)
+                            # plt.imshow(img_erosion2,cmap= 'gray')
+                            # plt.show()
+
+                            img_dilation = cv.dilate(img, kernel, iterations=1)
+                            img_dilation2 = cv.dilate(img, kernel, iterations=2)
+
+                            plt.imshow(img_dilation2,cmap= 'gray')
                             plt.show()
 
             except Exception as e:
