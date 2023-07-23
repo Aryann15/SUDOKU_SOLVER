@@ -16,13 +16,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 from tensorflow.keras.utils import img_to_array
-import  matplotlib.pyplot as plt
 
-#
-# frame = cv.VideoCapture(0)
-#
-# frame.set(3,640)
-# frame.set(4,480)
 
 
 
@@ -97,26 +91,12 @@ def classify(img):
                     prob = np.max(prediction)
                     # plt.imshow(image_rect, cmap='gray')
                     # plt.show()
-            print('detected:' , digit)
-            print('probability' , prob)
+            # print('detected:' , digit)
+            # print('probability' , prob)
             digits_list.append(digit)
 
     return digits_list
 
-def array_to_string(sudoku):
-    rows, cols = sudoku.shape
-    string_repr = "["
-    for i in range(rows):
-        string_repr += "["
-        for j in range(cols):
-            string_repr += str(sudoku[i][j])
-            if j < cols - 1:
-                string_repr += ", "
-        string_repr += "]"
-        if i < rows - 1:
-            string_repr += ",\n "
-    string_repr += "]"
-    return string_repr
 
 # solving sudoku
 def valid(grid, row, col , number):
@@ -178,10 +158,17 @@ while True:
         sudoku2d = np.array(sudoku2d)
 
         sudoku2d_unsolved = sudoku2d.copy()
-        grid = array_to_string(sudoku2d_unsolved)
 
 
+        print("Unsolved Sudoku:")
+        print(sudoku2d_unsolved)
 
+
+        if solve(sudoku2d_unsolved, 0, 0):
+            print("Solved Sudoku:")
+            print(sudoku2d_unsolved)
+        else:
+            print("No solution for this sudoku")
 
     except:
         pass
