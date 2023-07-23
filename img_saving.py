@@ -152,7 +152,10 @@ def find_empty(grid):
 
     return None
 
+def save(sudoku2d,sudoku2d_unsolved):
+    solved_cell = np.ones((900,900,3))
 
+    for i in rang/e
 
 while True:
     img_resp = requests.get(url)
@@ -182,7 +185,7 @@ while True:
         print(sudoku2d_unsolved)
 
         solve(sudoku2d)
-        print(sudoku2d)
+        save_
     except:
         pass
 
