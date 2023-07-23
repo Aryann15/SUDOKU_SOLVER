@@ -5,6 +5,7 @@ import os
 
 myData = 'C://Users//rajly//sudokuSOLVER//data'
 categories = ['0','1','2','3','4','5','6','7','8','9']
+training_data =[]
 
 def data_augmentation():
     for category in categories:
@@ -33,19 +34,22 @@ def data_augmentation():
                         #
                         for blur_value in range(-30,30):
                             img= cv.GaussianBlur(img_rect,(7,7),blur_value)
+                            training_data.append([img, class_num])
                         #     plt.imshow(img,cmap= 'gray')
                         #     plt.show()
                         #
                             img_erosion = cv.erode(img,kernel,iterations =1)
                             img_erosion2 = cv.erode(img,kernel,iterations =2)
+
                             # plt.imshow(img_erosion2,cmap= 'gray')
                             # plt.show()
 
                             img_dilation = cv.dilate(img, kernel, iterations=1)
                             img_dilation2 = cv.dilate(img, kernel, iterations=2)
 
-                            plt.imshow(img_dilation2,cmap= 'gray')
-                            plt.show()
+
+                            # plt.imshow(img_dilation2,cmap= 'gray')
+                            # plt.show()
 
             except Exception as e:
                 raise(e)
