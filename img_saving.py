@@ -163,7 +163,9 @@ def save(sudoku2d,sudoku2d_unsolved):
         solved_cell = cv.line(solved_cell,((i+1)*300,0),((i+1)*300,900),(255,255,255),10)
         solved_cell = cv.line(solved_cell,(0,(i+1)*300),(900,(i+1)*300),(255,255,255),10)
 
-
+font = cv.FONT_HERSHEY_SIMPLEX
+fontScale= 2
+thickness=4
 
 
 while True:
