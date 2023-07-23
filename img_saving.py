@@ -63,8 +63,8 @@ def get_contours(img,original_img):
             classify(contours)
 #
 def classify(img):
-    data_drop = 'data'
     crop = 10
+    digits_list= []
     for i in range(0,9):
         for j in range (0,9):
             J = j+1
@@ -98,6 +98,10 @@ def classify(img):
                     plt.show()
             print('detected:' , digit)
             print('probability' , prob)
+            digits_list.append(digit)
+
+    return digits_list
+
 
 
 while True:
