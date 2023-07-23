@@ -170,6 +170,12 @@ for (index_row,row) in enumerate(sudoku2d):
     for (index_num,num) in enumerate(row):
         pos =(index_num*100 +25, index_row*100 +70)
         color = (200,200,200)
+        if sudoku2d_unsolved[index_row][index_num]==0:
+            color(0,200,0)
+
+        solved_cell = cv.putText(solved_cell,str(num),pos,font,fontScale,color,thickness,cv.LINE_AA)
+
+
 
 
 
