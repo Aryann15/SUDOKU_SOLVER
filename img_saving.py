@@ -166,6 +166,14 @@ def save(sudoku2d,sudoku2d_unsolved):
 font = cv.FONT_HERSHEY_SIMPLEX
 fontScale= 2
 thickness=4
+for (index_row,row) in enumerate(sudoku2d):
+    for (index_num,num) in enumerate(row):
+        pos =(index_num*100 +25, index_row*100 +70)
+        color = (200,200,200)
+
+
+
+
 
 
 while True:
