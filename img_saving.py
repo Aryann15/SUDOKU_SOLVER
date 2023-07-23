@@ -80,7 +80,6 @@ def classify(img):
                     x,y,w,h = cv.boundingRect(approx)
                     image_rect = cell[y:y+h,x:x+w]
                     image_rect = cv.resize(image_rect,(100,100))
-
                     image_num = img_to_array(image_rect)
 
                     image_num = np.array(image_num).reshape(-1,100,100,1)
