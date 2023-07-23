@@ -150,7 +150,9 @@ def solve(grid, row, col):
             if solve(grid,row,col+1):
                 return True
 
+        grid[row][col] = 0
 
+    return False
 
 while True:
     img_resp = requests.get(url)
@@ -170,14 +172,13 @@ while True:
 
     try:
         sudoku = classify(img_contours_bin)
-        # print(sudoku)
         sudoku2d = []
         for i in range (0,9):
             sudoku2d.append([cell for cell in sudoku[i*9:(i+1)*9]])
         sudoku2d = np.array(sudoku2d)
 
         sudoku2d_unsolved = sudoku2d.copy()
-        print(array_to_string(sudoku2d_unsolved))
+        grid = array_to_string(sudoku2d_unsolved)
 
 
 
