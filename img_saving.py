@@ -136,7 +136,12 @@ def is_valid(grid,num, coordinate):
     box_y = coordinate[0]
 
 
+    for i in range(box_y*3 , box_y*3 +3):
+        for j in range(box_x*3, box_x*3 +3):
+            if grid[i][j] ==num and (i,j) != coordinate:
+                return False
 
+    return True
 
 
 
