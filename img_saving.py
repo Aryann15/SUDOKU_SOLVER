@@ -71,7 +71,11 @@ def classify(img):
             I = i+1
             cell = img[I*70-70 +crop : I*70 -crop, J*70-70 +crop: J*70 -crop]
             canny = cv.Canny(cell,50,50)
-            contours,hirarchy = cv. findContours(canny,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
+            contours,hierarchy = cv. findContours(canny,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
+
+            digit = 0
+            prob= 1
+
             for cnt in contours:
                  area = cv.contourArea(cnt)
                  if area > 5:
@@ -92,8 +96,8 @@ def classify(img):
                     prob = np.max(prediction)
                     plt.imshow(image_rect, cmap='gray')
                     plt.show()
-                    print('detected:' , digit)
-                    print('probability' , prob)
+            print('detected:' , digit)
+            print('probability' , prob)
 
 
 while True:
