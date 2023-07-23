@@ -2,6 +2,7 @@ import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import random
 
 myData = 'C://Users//rajly//sudokuSOLVER//data'
 categories = ['0','1','2','3','4','5','6','7','8','9']
@@ -58,3 +59,11 @@ def data_augmentation():
                 raise(e)
 
 data_augmentation()
+
+random.seed(3300)
+random.shuffle(training_data)
+
+for features,label in training_data[:10]:
+    print(label)
+
+
