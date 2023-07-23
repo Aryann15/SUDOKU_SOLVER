@@ -155,7 +155,9 @@ def find_empty(grid):
 def save(sudoku2d,sudoku2d_unsolved):
     solved_cell = np.ones((900,900,3))
 
-    for i in rang/e
+    for i in range(8):
+        solved_cell = cv.line(solved_cell,((i+1)*100,0),((i+1)*100,900),(255,255,255),5)
+        solved_cell = cv.line(solved_cell,(0,(i+1)*100),(900,(i+1)*100),(255,255,255),5)
 
 while True:
     img_resp = requests.get(url)
