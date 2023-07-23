@@ -7,18 +7,7 @@ import imutils
 url = "http://192.168.1.2:8080/shot.jpg"
 
 from statistics import *
-from keras.utils import to_categorical
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import Flatten
-from keras.optimizers import SGD
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
 from tensorflow.keras.utils import img_to_array
-
-
-
 
 def get_contours(img,original_img):
     contours, hierarchy = cv.findContours(img, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_NONE)
@@ -91,11 +80,12 @@ def classify(img):
                     prob = np.max(prediction)
                     # plt.imshow(image_rect, cmap='gray')
                     # plt.show()
-            # print('detected:' , digit)
-            # print('probability' , prob)
+            print('detected:' , digit)
+            print('probability' , prob)
             digits_list.append(digit)
 
     return digits_list
+
 
 
 # solving sudoku
@@ -155,15 +145,16 @@ while True:
         sudoku2d = []
         for i in range (0,9):
             sudoku2d.append([cell for cell in sudoku[i*9:(i+1)*9]])
+
         sudoku2d = np.array(sudoku2d)
 
         sudoku2d_unsolved = sudoku2d.copy()
 
-
+        # Print the unsolved sudoku grid
         print("Unsolved Sudoku:")
         print(sudoku2d_unsolved)
 
-
+        # Solve the sudoku
         if solve(sudoku2d_unsolved, 0, 0):
             print("Solved Sudoku:")
             print(sudoku2d_unsolved)
