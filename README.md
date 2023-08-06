@@ -18,8 +18,12 @@ The Sudoku Solver relies on the following libraries:
 - OpenCV: For image processing and contour detection.
 - TensorFlow: For deep learning and neural network model inference.
 - Keras: For building and training the digit recognition model.
-
+- request: Used to fetch the image from the smartphone's camera server (IP Webcam) using the provided URL.(no need if using laptop' webcam)
+- imutils: Used for resizing the image captured from the smartphone's camera.(no need if using laptop' webcam)
+  
 Make sure you have these libraries installed before running the solver.
+
+**NOTE: If (like me) you do not have access to a good webcam on your laptop or an external webcam, you can use your smartphone's camera to capture the Sudoku puzzle image and then utilize the application ("IP Webcam") to stream the camera feed to the laptop.**
 
 ## Contributing
 
