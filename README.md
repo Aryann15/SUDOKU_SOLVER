@@ -48,10 +48,13 @@ import tensorflow as tf <br>
 cap = cv.VideoCapture(0) <br>
 **Rest of the code remains the same as in the original solver.py script...**
 
+## Demo:
+![WhatsApp Image 2023-07-29 at 21 37 53](https://github.com/Aryann15/SUDOKU_SOLVER/assets/82017158/477bd0fd-9e64-467d-bd6c-f55d223b4ee6)
+
 
 ## Contributing
 
-Contributions to Sudoku Solver are welcome! If you find any issues, have ideas for improvement, or want to add new features, feel free to open an issue or submit a pull request.
+Contributions to Sudoku Solver are welcome! If you find any issues, have ideas for improvement, or want to add new features, feel free to open an issue or submit a pull request :)
 
 ## Contact
 
